@@ -5,6 +5,9 @@ Helpers to get the best out of dbt.
 2. Create a virtual env, as it always helps.
 3. Install the requirements
 ```pip install -r requirements.txt```
+
+## Using pre-commit to run tests on changed dbt models
+
 4. Install the git hook scripts
 ```pre-commit install```
 
