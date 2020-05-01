@@ -11,4 +11,4 @@ Helpers to get the best out of dbt.
 4. Install the git hook scripts
 ```pre-commit install```
 
-Each time you commit a model, the pre-commit hook will run `dbt test` against it. Of course, any model will pass if you havent written any tests.
+Each time you commit a model, the pre-commit hook will run `dbt test` against it. Of course, any model will pass if you haven't written any tests.
