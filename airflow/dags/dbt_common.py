@@ -29,7 +29,7 @@ class DbtCommon:
         """
         return BashOperator(
             task_id="refresh_dbt_deps",
-            bash_command=f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt deps --profile={self.profile}",
+            bash_command=f"cd ~/{self.project} && dbt deps --profile={self.profile}",
             dag=self.dag,
         )
 
@@ -41,7 +41,7 @@ class DbtCommon:
         """
         return BashOperator(
             task_id="clean_dbt_docs",
-            bash_command=f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt clean --profile={self.profile}",
+            bash_command=f"cd ~/{self.project} && dbt clean --profile={self.profile}",
             dag=self.dag,
         )
 
@@ -53,7 +53,7 @@ class DbtCommon:
         """
         return BashOperator(
             task_id="create_dbt_snapshot",
-            bash_command=f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt snapshot --profile={self.profile} -s {snapshot}",
+            bash_command=f"cd ~/{self.project} && dbt snapshot --profile={self.profile} -s {snapshot}",
             dag=self.dag,
         )
 
@@ -69,7 +69,7 @@ class DbtCommon:
         """
         return BashOperator(
             task_id="load_static_csvs",
-            bash_command=f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt seed --profile={self.profile}",
+            bash_command=f"cd ~/{self.project} && dbt seed --profile={self.profile}",
             dag=self.dag,
         )
 
@@ -88,7 +88,7 @@ class DbtCommon:
         """
         return BashOperator(
             task_id="compile_dbt_sql",
-            bash_command=f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt compile --profile={self.profile}",
+            bash_command=f"cd ~/{self.project} && dbt compile --profile={self.profile}",
             dag=self.dag,
         )
 
@@ -102,7 +102,7 @@ class DbtCommon:
         """
         return BashOperator(
             task_id="generate_dbt_docs",
-            bash_command=f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt docs generate",
+            bash_command=f"cd ~/{self.project} && dbt docs generate",
             dag=self.dag,
         )
 
@@ -116,7 +116,7 @@ class DbtCommon:
         """
         return BashOperator(
             task_id="refresh_project",
-            bash_command=f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt run --profile={self.profile}",
+            bash_command=f"cd ~/{self.project} && dbt run --profile={self.profile}",
             dag=self.dag,
         )
 
@@ -130,9 +130,9 @@ class DbtCommon:
         without violating dependencies.
         """
         if is_incremental:
-            command = f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt run --models marts.{self.data_mart} --profile={self.profile}"
+            command = f"cd ~/{self.project} && dbt run --models marts.{self.data_mart} --profile={self.profile}"
         else:
-            command = f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt run --models marts.{self.data_mart} --full_refresh --profile={self.profile}"
+            command = f"cd ~/{self.project} && dbt run --models marts.{self.data_mart} --full_refresh --profile={self.profile}"
         return BashOperator(
             task_id=f"refresh_data_mart_{self.data_mart}",
             bash_command=command,
@@ -149,7 +149,7 @@ class DbtCommon:
         multi-threading is used to minimize execution time without violating dependencies.
         """
         if is_incremental:
-            command = f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt run --models {model} --profile={self.profile}"
+            command = f"cd ~/{self.project} && dbt run --models {model} --profile={self.profile}"
         else:
             command = f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt run --models {model} --full-refresh --profile={self.profile}"
         return BashOperator(
