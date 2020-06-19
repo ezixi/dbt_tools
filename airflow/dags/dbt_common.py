@@ -151,7 +151,7 @@ class DbtCommon:
         if is_incremental:
             command = f"cd ~/{self.project} && dbt run --models {model} --profile={self.profile}"
         else:
-            command = f"cd ~/{self.project} && {self.home}/.virtualenvs/data_marts/bin/dbt run --models {model} --full-refresh --profile={self.profile}"
+            command = f"cd ~/{self.project} && dbt run --models {model} --full-refresh --profile={self.profile}"
         return BashOperator(
             task_id=f"refresh_model_{model}", bash_command=command, dag=self.dag
         )
