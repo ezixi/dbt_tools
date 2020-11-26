@@ -1,9 +1,16 @@
 repos:
 -   repo: local
     hooks:
+    -   id: sqlfluff
+        name: lint models
+        entry: run_sqlfluff.sh
+        language: script
+        types: [file, sql]
+        exclude: ^tests/
     -   id: dbt_test
         name: run dbt test
         entry: run_dbt_test.sh
         language: script
         types: [file, sql]
         exclude: ^tests/
+

@@ -1,0 +1,23 @@
+[sqlfluff]
+templater = jinja
+exclude_rules = L001,L003,L014
+dialect = bigquery
+
+[sqlfluff:templater:jinja]
+load_macros_from_path=macros/
+
+[sqlfluff:rules:L003]
+tab_space_size = 4
+indent_unit = space
+lint_templated_tokens = true
+
+[sqlfluff:rules:L010]
+capitalisation_policy = lower
+
+[sqlfluff:rules:L016]
+max_line_length = 110
+tab_space_size = 4
+indent_unit = space
+
+[sqlfluff:rules:L030]
+capitalisation_policy = lower
