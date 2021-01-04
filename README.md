@@ -11,7 +11,7 @@ Helpers to get the best out of dbt.
 4. Install the git hook scripts
 ```pre-commit install```
 
-Each time you commit a model, the pre-commit hook will run `dbt test` against it. Of course, any model will pass if you haven't written any tests.
+Each time you commit a model, the pre-commit hook will run `dbt test` against it. Of course, any model will pass if you haven't written any tests. It also runs `sqlfluff` that will lint your models and fix _some_ common formatting issues.
 
 ## Airflow helpers
 Although dbt does have a Python API, it is [not currently documented](https://docs.getdbt.com/docs/running-a-dbt-project/dbt-api).
